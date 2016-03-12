@@ -11,6 +11,8 @@ import java.util.*;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 import org.hibernate.validator.constraints.Length;
@@ -29,6 +31,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Entity
 @Table(name = "dim_geog")
 @JsonIgnoreProperties( value={"hibernateLazyInitializer","handler"})//序列化成json是不序列化这两个属性否则会报错
+@Cache(region="hibernate-redis", usage = CacheConcurrencyStrategy.READ_WRITE)
 public class DimGeog implements java.io.Serializable{
 	private static final long serialVersionUID = -1L;
 	
