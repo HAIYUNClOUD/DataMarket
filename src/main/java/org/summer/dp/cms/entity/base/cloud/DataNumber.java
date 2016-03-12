@@ -1,7 +1,7 @@
 /**
  * @author 
  * @version 1.0
- * @since  2016-03-12 14:46:42
+ * @since  2016-03-12 20:55:10
  * @desc 数据表
  */
 
@@ -46,6 +46,7 @@ public class DataNumber implements java.io.Serializable{
 	public static final String ALIAS_DIM_DATETIME_ID = "时间维度";
 	public static final String ALIAS_DIM_GEOG_ID = "地理位置维度";
 	public static final String ALIAS_DIM_WORKSHOP_ID = "厂房维度";
+	public static final String ALIAS_CREATE_DATE = "数据产生日期";
 	
 	
 
@@ -75,6 +76,8 @@ public class DataNumber implements java.io.Serializable{
 	private Long dimGeogId;
 	
 	private Long dimWorkshopId;
+	
+	private java.util.Date createDate;
 	//columns END
 
 
@@ -202,6 +205,18 @@ public class DataNumber implements java.io.Serializable{
 		this.dimWorkshopId = value;
 	}
 	
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+	@Column(name = "create_date", unique = false, nullable = true, insertable = true, updatable = true, length = 19)
+	public java.util.Date getCreateDate() {
+		return this.createDate;
+	}
+	
+	public void setCreateDate(java.util.Date value) {
+		this.createDate = value;
+	}
+	
 	
 	private DimGeog dimGeog;
 	
@@ -265,6 +280,7 @@ public class DataNumber implements java.io.Serializable{
 			.append("DimDatetimeId",getDimDatetimeId())
 			.append("DimGeogId",getDimGeogId())
 			.append("DimWorkshopId",getDimWorkshopId())
+			.append("CreateDate",getCreateDate())
 			.toString();
 	}
 	
