@@ -10,6 +10,7 @@ package org.summer.dp.cms.ctrl.cloud;
 
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -35,12 +36,16 @@ public class DataNumberController extends BaseController {
 	@RequestMapping(value = "/exportForm")
 	public @ResponseBody ExportFormResponse exportForm(Response response ,ExportFormRequest exportFormRequest){
 		System.out.println(exportFormRequest.toString());
-		
-		List<ExportForm> exportFormList = this.dataNumberService.exportForm(exportFormRequest);
 		ExportFormResponse exportFormResponse = new ExportFormResponse();
-		exportFormResponse.toResponse(exportFormList, exportFormRequest);
-		System.out.println(exportFormResponse.toString());
-		response.setData(exportFormResponse.toString());
+		if(StringUtils.isBlank(exportFormRequest.getGroupby()) || exportFormRequest.getStartDate() == null 
+				|| exportFormRequest.getEndDate()==null || StringUtils.isBlank(exportFormRequest.getFunction()) ){
+			exportFormResponse.setMsg("gruop by or startDate or endDate of function  must not be null");
+		}else{
+			List<ExportForm> exportFormList = this.dataNumberService.exportForm(exportFormRequest);
+			exportFormResponse.toResponse(exportFormList, exportFormRequest);
+			System.out.println(exportFormResponse.toString());
+			response.setData(exportFormResponse.toString());
+		}
 		return exportFormResponse;
 	}
 

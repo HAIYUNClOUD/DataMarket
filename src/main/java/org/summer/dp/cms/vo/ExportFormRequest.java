@@ -1,5 +1,6 @@
 package org.summer.dp.cms.vo;
 
+import java.util.Arrays;
 import java.util.Date;
 
 /**
@@ -15,8 +16,18 @@ public class ExportFormRequest {
 		YEAR,MONTH,DAY
 	}
 	private String function;// AVG,SUM,MAX,MIN 
-	private String groupby;//YEAR,MONTH,DAY,HOUR
-	private byte dimType;//1 dimGeog 2 dimType 3 dimWorkshop
+	private String groupby;//YEAR,MONTH,DAY,HOUR,DIMGEOG,DIMTYPE,DIMWORKSHOP 横坐标
+	/**
+	 * 返回的线 下面就是值
+	 * electric_number 
+	 * gas_number 
+	 * production_number
+	 * sale_number 
+	 * temperature 
+	 * warn_number 
+	 * water_number
+	 */
+	private String lines[];
 	private Date startDate;
 	private Date endDate;
 	public String getFunction() {
@@ -31,12 +42,6 @@ public class ExportFormRequest {
 	public void setGroupby(String groupby) {
 		this.groupby = groupby;
 	}
-	public byte getDimType() {
-		return dimType;
-	}
-	public void setDimType(byte dimType) {
-		this.dimType = dimType;
-	}
 	public Date getStartDate() {
 		return startDate;
 	}
@@ -49,22 +54,19 @@ public class ExportFormRequest {
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
+	
+	public String[] getLines() {
+		return lines;
+	}
+	public void setLines(String[] lines) {
+		this.lines = lines;
+	}
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("ExportFormRequest [function=");
-		builder.append(function);
-		builder.append(", groupby=");
-		builder.append(groupby);
-		builder.append(", dimType=");
-		builder.append(dimType);
-		builder.append(", startDate=");
-		builder.append(startDate);
-		builder.append(", endDate=");
-		builder.append(endDate);
-		builder.append("]");
-		return builder.toString();
+		return "ExportFormRequest [function=" + function + ", groupby=" + groupby + ", lines=" + Arrays.toString(lines)
+				+ ", startDate=" + startDate + ", endDate=" + endDate + "]";
 	}
+
 
 
 }

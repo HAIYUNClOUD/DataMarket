@@ -121,17 +121,6 @@ public class ExportForm {
 		builder.append("]");
 		return builder.toString();
 	}
-	public ExportForm(String electricNumber, String gasNumber, String productionNumber, String saleNumber,
-			String temperatureNumber, String warnNumber, String waterNumber) {
-		super();
-		this.electricNumber = electricNumber;
-		this.gasNumber = gasNumber;
-		this.productionNumber = productionNumber;
-		this.saleNumber = saleNumber;
-		this.temperatureNumber = temperatureNumber;
-		this.warnNumber = warnNumber;
-		this.waterNumber = waterNumber;
-	}
-	
+
 	
 }
