@@ -13,6 +13,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.summer.dp.cms.interceptor.ServletInterceptor;
 import org.summer.dp.cms.support.Fastjson2HttpMessageConverter;
 
 @SpringBootApplication
@@ -40,7 +41,7 @@ public class Start extends WebMvcConfigurerAdapter{
      * @param registry
      */
     public void addInterceptors(InterceptorRegistry registry) {
-    	//registry.addInterceptor(new UserSecurityInterceptor()).addPathPatterns("/user/**");
+    	registry.addInterceptor(new ServletInterceptor()).addPathPatterns("/");
 	}
     
     /**

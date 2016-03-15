@@ -16,7 +16,10 @@ public class ExportFormRequest {
 		YEAR,MONTH,DAY
 	}
 	private String function;// AVG,SUM,MAX,MIN 
-	private String groupby;//YEAR,MONTH,DAY,HOUR,DIMGEOG,DIMTYPE,DIMWORKSHOP 横坐标
+	private String groupby;//YEAR,MONTH,DAY 横坐标
+	private String geogId;//地理位置ID
+	private String workShopId;//厂房ID
+	private String typeId;//类型ID
 	/**
 	 * 返回的线 下面就是值
 	 * electric_number 
@@ -61,11 +64,32 @@ public class ExportFormRequest {
 	public void setLines(String[] lines) {
 		this.lines = lines;
 	}
+	
+	public String getGeogId() {
+		return geogId;
+	}
+	public void setGeogId(String geogId) {
+		this.geogId = geogId;
+	}
+	public String getWorkShopId() {
+		return workShopId;
+	}
+	public void setWorkShopId(String workShopId) {
+		this.workShopId = workShopId;
+	}
+	public String getTypeId() {
+		return typeId;
+	}
+	public void setTypeId(String typeId) {
+		this.typeId = typeId;
+	}
 	@Override
 	public String toString() {
-		return "ExportFormRequest [function=" + function + ", groupby=" + groupby + ", lines=" + Arrays.toString(lines)
+		return "ExportFormRequest [function=" + function + ", groupby=" + groupby + ", geogId=" + geogId
+				+ ", workShopId=" + workShopId + ", typeId=" + typeId + ", lines=" + Arrays.toString(lines)
 				+ ", startDate=" + startDate + ", endDate=" + endDate + "]";
 	}
+	
 
 
 

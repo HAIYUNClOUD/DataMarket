@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
 import org.summer.dp.cms.vo.ExportFormRequest;
 
 /**
@@ -94,8 +95,12 @@ public class ExportFormSqlBuilder {
 		}
 		
 		//build where 
+		
 		wheresql.append(" create_date >= '" + sdf.format(exportFormRequest.getStartDate())+"'");
 		wheresql.append(" and create_date <= '" + sdf.format(exportFormRequest.getEndDate())+"'");
+		if(StringUtils.isNotBlank(exportFormRequest.getGeogId()))wheresql.append(" and  dg.id = " + exportFormRequest.getGeogId());
+		if(StringUtils.isNotBlank(exportFormRequest.getTypeId()))wheresql.append(" and dtype.id = " + exportFormRequest.getTypeId());
+		if(StringUtils.isNotBlank(exportFormRequest.getWorkShopId()))wheresql.append(" and dw.id = " + exportFormRequest.getWorkShopId());
 
 		//build group by
 		if(exportFormRequest.getGroupby().equals(YEAR)){ groupBysql.append("dt.year");selectsql.append("dt.year");  }
