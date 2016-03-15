@@ -41,21 +41,16 @@ public class DataNumberService extends BaseService<DataNumber> {
 			int i = 0;
 			for(String columnAndFunction:exportFormRequest.getLines()){
 				String[] columnAndFunctionArray = columnAndFunction.split("-");
-				if(columnAndFunctionArray[0].equals(ExportFormSqlBuilder.electric_column)) exportForm.setElectricNumber(String.valueOf(oArray[i]));
-				if(columnAndFunctionArray[0].equals(ExportFormSqlBuilder.gas_number_column)) exportForm.setGasNumber(String.valueOf(oArray[i]));
-				if(columnAndFunctionArray[0].equals(ExportFormSqlBuilder.production_number_column)) exportForm.setProductionNumber(String.valueOf(oArray[i]));
-				if(columnAndFunctionArray[0].equals(ExportFormSqlBuilder.sale_number_column)) exportForm.setSaleNumber(String.valueOf(oArray[i]));
-				if(columnAndFunctionArray[0].equals(ExportFormSqlBuilder.temperature_column)) exportForm.setTemperatureNumber(String.valueOf(oArray[i]));
-				if(columnAndFunctionArray[0].equals(ExportFormSqlBuilder.warn_number_column)) exportForm.setWarnNumber(String.valueOf(oArray[i]));
-				if(columnAndFunctionArray[0].equals(ExportFormSqlBuilder.warn_number_column)) exportForm.setWaterNumber(String.valueOf(oArray[i]));++i;
+				exportForm.getColumns().add(String.valueOf(oArray[i++]));
+	
 			}
 			
 
-//			int lastDown = oArray.length-1;
-			if(exportFormRequest.getGroupby().equals(ExportFormSqlBuilder.YEAR))exportForm.setYear(String.valueOf(oArray[i]));
-			if(exportFormRequest.getGroupby().equals(ExportFormSqlBuilder.MONTH))exportForm.setMonth(String.valueOf(oArray[i]));
-			if(exportFormRequest.getGroupby().equals(ExportFormSqlBuilder.HOUR))exportForm.setHour(String.valueOf(oArray[i]));
-			if(exportFormRequest.getGroupby().equals(ExportFormSqlBuilder.DAY))exportForm.setDay(String.valueOf(oArray[i]));
+			int lastDown = oArray.length-1;
+			if(exportFormRequest.getGroupby().equals(ExportFormSqlBuilder.YEAR))exportForm.setYear(String.valueOf(oArray[lastDown]));
+			if(exportFormRequest.getGroupby().equals(ExportFormSqlBuilder.MONTH))exportForm.setMonth(String.valueOf(oArray[lastDown]));
+			if(exportFormRequest.getGroupby().equals(ExportFormSqlBuilder.HOUR))exportForm.setHour(String.valueOf(oArray[lastDown]));
+			if(exportFormRequest.getGroupby().equals(ExportFormSqlBuilder.DAY))exportForm.setDay(String.valueOf(oArray[lastDown]));
 			listExportForm.add(exportForm);
 
 			System.out.println(exportForm.toString());
