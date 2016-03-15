@@ -24,6 +24,7 @@ public class ExportFormSqlBuilder {
 	public static final String warn_number_column = "warn_number";
 	public static final String water_number_column = "water_number";
 	private static final String tdoc = "t.";
+	private static final String AS = " as ";
 	private static final String dimdatetime_table = "dim_datatime dt";
 	private static final String dimgeog_table = "dim_geog dg";
 	private static final String dimworkshop_table = "dim_workshop dw";
@@ -51,51 +52,22 @@ public class ExportFormSqlBuilder {
 				"LEFT JOIN dim_type dtype on dtype.ID = t.dim_type_id ");
 		StringBuilder wheresql  = new StringBuilder(" where ");
 
-		List<String> linesList = Arrays.asList(exportFormRequest.getLines());
 		//build select 
-		if(exportFormRequest.getFunction().equals(AVG)){
-			if(linesList.contains(electric_column))	selectsql.append(AVG).append(left).append(tdoc).append(electric_column).append(right).append(" as electric_number").append(DOUHAO);
-			if(linesList.contains(gas_number_column))selectsql.append(AVG).append(left).append(tdoc).append(gas_number_column).append(right).append(" as gas_number").append(DOUHAO);
-			if(linesList.contains(production_number_column))selectsql.append(AVG).append(left).append(tdoc).append(production_number_column).append(right).append(" as production_number").append(DOUHAO);
-			if(linesList.contains(sale_number_column))selectsql.append(AVG).append(left).append(tdoc).append(sale_number_column).append(right).append(" as sale_number").append(DOUHAO);
-			if(linesList.contains(temperature_column))selectsql.append(AVG).append(left).append(tdoc).append(temperature_column).append(right).append(" as temperature").append(DOUHAO);
-			if(linesList.contains(warn_number_column))selectsql.append(AVG).append(left).append(tdoc).append(warn_number_column).append(right).append(" as warn_number").append(DOUHAO);
-			if(linesList.contains(water_number_column))	selectsql.append(AVG).append(left).append(tdoc).append(water_number_column).append(right).append(" as water_number").append(DOUHAO);
+		for(String columnAndFunction:exportFormRequest.getLines()){
+			String[] columnAndFunctionArray = columnAndFunction.split("-");
+			String column = "";
+			if(columnAndFunctionArray[0].equals(electric_column)) column = electric_column;
+			if(columnAndFunctionArray[0].equals(gas_number_column)) column = gas_number_column;
+			if(columnAndFunctionArray[0].equals(production_number_column)) column = electric_column;
+			if(columnAndFunctionArray[0].equals(sale_number_column)) column = sale_number_column;
+			if(columnAndFunctionArray[0].equals(temperature_column)) column = temperature_column;
+			if(columnAndFunctionArray[0].equals(warn_number_column)) column = warn_number_column;
+			if(columnAndFunctionArray[0].equals(warn_number_column)) column = water_number_column;
+			selectsql.append(columnAndFunctionArray[1]).append(left).append(tdoc).append(electric_column).append(right).append(AS).append(column).append(DOUHAO);
 		}
 		
-		if(exportFormRequest.getFunction().equals(SUM)){
-			if(linesList.contains(electric_column))	selectsql.append(SUM).append(left).append(tdoc).append(electric_column).append(right).append(" as electric_number").append(DOUHAO);
-			if(linesList.contains(gas_number_column))selectsql.append(SUM).append(left).append(tdoc).append(gas_number_column).append(right).append(" as gas_number").append(DOUHAO);
-			if(linesList.contains(production_number_column))selectsql.append(SUM).append(left).append(tdoc).append(production_number_column).append(right).append(" as production_number").append(DOUHAO);
-			if(linesList.contains(sale_number_column))selectsql.append(SUM).append(left).append(tdoc).append(sale_number_column).append(right).append(" as sale_number").append(DOUHAO);
-			if(linesList.contains(temperature_column))selectsql.append(SUM).append(left).append(tdoc).append(temperature_column).append(right).append(" as temperature").append(DOUHAO);
-			if(linesList.contains(warn_number_column))selectsql.append(SUM).append(left).append(tdoc).append(warn_number_column).append(right).append(" as warn_number").append(DOUHAO);
-			if(linesList.contains(water_number_column))	selectsql.append(SUM).append(left).append(tdoc).append(water_number_column).append(right).append(" as water_number").append(DOUHAO);
-		}
-		
-		if(exportFormRequest.getFunction().equals(MAX)){
-			if(linesList.contains(electric_column))	selectsql.append(MAX).append(left).append(tdoc).append(electric_column).append(right).append(" as electric_number").append(DOUHAO);
-			if(linesList.contains(gas_number_column))selectsql.append(MAX).append(left).append(tdoc).append(gas_number_column).append(right).append(" as gas_number").append(DOUHAO);
-			if(linesList.contains(production_number_column))selectsql.append(MAX).append(left).append(tdoc).append(production_number_column).append(right).append(" as production_number").append(DOUHAO);
-			if(linesList.contains(sale_number_column))selectsql.append(MAX).append(left).append(tdoc).append(sale_number_column).append(right).append(" as sale_number").append(DOUHAO);
-			if(linesList.contains(temperature_column))selectsql.append(MAX).append(left).append(tdoc).append(temperature_column).append(right).append(" as temperature").append(DOUHAO);
-			if(linesList.contains(warn_number_column))selectsql.append(MAX).append(left).append(tdoc).append(warn_number_column).append(right).append(" as warn_number").append(DOUHAO);
-			if(linesList.contains(water_number_column))	selectsql.append(MAX).append(left).append(tdoc).append(water_number_column).append(right).append(" as water_number").append(DOUHAO);
-		}
-		
-		
-		if(exportFormRequest.getFunction().equals(MIN)){
-			if(linesList.contains(electric_column))	selectsql.append(MAX).append(left).append(tdoc).append(electric_column).append(right).append(" as electric_number").append(DOUHAO);
-			if(linesList.contains(gas_number_column))selectsql.append(MAX).append(left).append(tdoc).append(gas_number_column).append(right).append(" as gas_number").append(DOUHAO);
-			if(linesList.contains(production_number_column))selectsql.append(MAX).append(left).append(tdoc).append(production_number_column).append(right).append(" as production_number").append(DOUHAO);
-			if(linesList.contains(sale_number_column))selectsql.append(MAX).append(left).append(tdoc).append(sale_number_column).append(right).append(" as sale_number").append(DOUHAO);
-			if(linesList.contains(temperature_column))selectsql.append(MAX).append(left).append(tdoc).append(temperature_column).append(right).append(" as temperature").append(DOUHAO);
-			if(linesList.contains(warn_number_column))selectsql.append(MAX).append(left).append(tdoc).append(warn_number_column).append(right).append(" as warn_number").append(DOUHAO);
-			if(linesList.contains(water_number_column))	selectsql.append(MAX).append(left).append(tdoc).append(water_number_column).append(right).append(" as water_number").append(DOUHAO);
-		}
 		
 		//build where 
-		
 		wheresql.append(" create_date >= '" + sdf.format(exportFormRequest.getStartDate())+"'");
 		wheresql.append(" and create_date <= '" + sdf.format(exportFormRequest.getEndDate())+"'");
 		if(StringUtils.isNotBlank(exportFormRequest.getGeogId()))wheresql.append(" and  dg.id = " + exportFormRequest.getGeogId());

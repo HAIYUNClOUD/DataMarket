@@ -37,14 +37,19 @@ public class DataNumberController extends BaseController {
 	public @ResponseBody ExportFormResponse exportForm(Response response ,ExportFormRequest exportFormRequest){
 		System.out.println(exportFormRequest.toString());
 		ExportFormResponse exportFormResponse = new ExportFormResponse();
-		if(StringUtils.isBlank(exportFormRequest.getGroupby()) || exportFormRequest.getStartDate() == null 
-				|| exportFormRequest.getEndDate()==null || StringUtils.isBlank(exportFormRequest.getFunction()) ){
-			exportFormResponse.setMsg("gruop by or startDate or endDate of function  must not be null");
-		}else{
-			List<ExportForm> exportFormList = this.dataNumberService.exportForm(exportFormRequest);
-			exportFormResponse.toResponse(exportFormList, exportFormRequest);
-			System.out.println(exportFormResponse.toString());
-			response.setData(exportFormResponse.toString());
+		try{
+			if(StringUtils.isBlank(exportFormRequest.getGroupby()) || exportFormRequest.getStartDate() == null 
+					|| exportFormRequest.getEndDate()==null){
+				exportFormResponse.setMsg("gruop by or startDate or endDate must not be null");
+			}else{
+				List<ExportForm> exportFormList = this.dataNumberService.exportForm(exportFormRequest);
+				exportFormResponse.toResponse(exportFormList, exportFormRequest);
+				System.out.println(exportFormResponse.toString());
+				response.setData(exportFormResponse.toString());
+			}
+		}catch (Exception e){
+			exportFormResponse.setMsg("function value equal MAX MIN AVG SUM ; start end date must yyyyMMdd hhmmss ;if right!call 18520786445.");
+			e.printStackTrace();
 		}
 		return exportFormResponse;
 	}

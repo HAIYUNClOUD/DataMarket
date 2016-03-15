@@ -37,22 +37,25 @@ public class DataNumberService extends BaseService<DataNumber> {
 		for(Object o : list){
 			Object[] oArray = (Object[]) o;
 			ExportForm exportForm = new ExportForm();
-			String[] lineStringArray = exportFormRequest.getLines();
             //electric_number(电量),gas_number(气量),production_number(产量),sale_number(销售量),temperature(温度),warn_number(热量),water_number(水量)
-			for(String str : lineStringArray){
-				if(str.equals(ExportFormSqlBuilder.electric_column))exportForm.setElectricNumber(String.valueOf(oArray[0]));
-				if(str.equals(ExportFormSqlBuilder.gas_number_column))exportForm.setGasNumber(String.valueOf(oArray[1]));
-				if(str.equals(ExportFormSqlBuilder.production_number_column))exportForm.setProductionNumber(String.valueOf(oArray[2]));
-				if(str.equals(ExportFormSqlBuilder.sale_number_column))exportForm.setSaleNumber(String.valueOf(oArray[3]));
-				if(str.equals(ExportFormSqlBuilder.temperature_column))exportForm.setTemperatureNumber(String.valueOf(oArray[4]));
-				if(str.equals(ExportFormSqlBuilder.warn_number_column))exportForm.setWarnNumber(String.valueOf(oArray[5]));
-				if(str.equals(ExportFormSqlBuilder.water_number_column))exportForm.setWaterNumber(String.valueOf(oArray[6]));
+			int i = 0;
+			for(String columnAndFunction:exportFormRequest.getLines()){
+				String[] columnAndFunctionArray = columnAndFunction.split("-");
+				if(columnAndFunctionArray[0].equals(ExportFormSqlBuilder.electric_column)) exportForm.setElectricNumber(String.valueOf(oArray[i]));
+				if(columnAndFunctionArray[0].equals(ExportFormSqlBuilder.gas_number_column)) exportForm.setGasNumber(String.valueOf(oArray[i]));
+				if(columnAndFunctionArray[0].equals(ExportFormSqlBuilder.production_number_column)) exportForm.setProductionNumber(String.valueOf(oArray[i]));
+				if(columnAndFunctionArray[0].equals(ExportFormSqlBuilder.sale_number_column)) exportForm.setSaleNumber(String.valueOf(oArray[i]));
+				if(columnAndFunctionArray[0].equals(ExportFormSqlBuilder.temperature_column)) exportForm.setTemperatureNumber(String.valueOf(oArray[i]));
+				if(columnAndFunctionArray[0].equals(ExportFormSqlBuilder.warn_number_column)) exportForm.setWarnNumber(String.valueOf(oArray[i]));
+				if(columnAndFunctionArray[0].equals(ExportFormSqlBuilder.warn_number_column)) exportForm.setWaterNumber(String.valueOf(oArray[i]));++i;
 			}
-			int lastDown = oArray.length-1;
-			if(exportFormRequest.getGroupby().equals(ExportFormSqlBuilder.YEAR))exportForm.setYear(String.valueOf(oArray[lastDown]));
-			if(exportFormRequest.getGroupby().equals(ExportFormSqlBuilder.MONTH))exportForm.setMonth(String.valueOf(oArray[lastDown]));
-			if(exportFormRequest.getGroupby().equals(ExportFormSqlBuilder.HOUR))exportForm.setHour(String.valueOf(oArray[lastDown]));
-			if(exportFormRequest.getGroupby().equals(ExportFormSqlBuilder.DAY))exportForm.setDay(String.valueOf(oArray[lastDown]));
+			
+
+//			int lastDown = oArray.length-1;
+			if(exportFormRequest.getGroupby().equals(ExportFormSqlBuilder.YEAR))exportForm.setYear(String.valueOf(oArray[i]));
+			if(exportFormRequest.getGroupby().equals(ExportFormSqlBuilder.MONTH))exportForm.setMonth(String.valueOf(oArray[i]));
+			if(exportFormRequest.getGroupby().equals(ExportFormSqlBuilder.HOUR))exportForm.setHour(String.valueOf(oArray[i]));
+			if(exportFormRequest.getGroupby().equals(ExportFormSqlBuilder.DAY))exportForm.setDay(String.valueOf(oArray[i]));
 			listExportForm.add(exportForm);
 
 			System.out.println(exportForm.toString());

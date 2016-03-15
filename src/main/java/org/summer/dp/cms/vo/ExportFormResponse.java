@@ -107,16 +107,19 @@ public class ExportFormResponse implements Serializable{
 		return builder.toString();
 	}
 	public void toResponse(List<ExportForm> list,ExportFormRequest exportFormRequest){
-		List<String> lines = Arrays.asList(exportFormRequest.getLines());
-	
+		
 		horizontalCoordinate = new ArrayList<String>();
-		if(lines.contains(ExportFormSqlBuilder.electric_column))electricNumberVerticalCoordinate = new ArrayList<String>();
-		if(lines.contains(ExportFormSqlBuilder.production_number_column))productionNumberVerticalCoordinate = new ArrayList<String>(); 
-		if(lines.contains(ExportFormSqlBuilder.gas_number_column))gasNumberVerticalCoordinate = new ArrayList<String>();
-		if(lines.contains(ExportFormSqlBuilder.sale_number_column))saleNumberVerticalCoordinate = new ArrayList<String>();
-		if(lines.contains(ExportFormSqlBuilder.temperature_column))temperatureNumberVerticalCoordinate = new ArrayList<String>();
-		if(lines.contains(ExportFormSqlBuilder.warn_number_column))warnNumberVerticalCoordinate = new ArrayList<String>();
-		if(lines.contains(ExportFormSqlBuilder.water_number_column))waterNumberVerticalCoordinate = new ArrayList<String>();
+		for(String columnAndFunction:exportFormRequest.getLines()){
+			String[] columnAndFunctionArray = columnAndFunction.split("-");
+			if(columnAndFunctionArray[0].equals(ExportFormSqlBuilder.electric_column)) electricNumberVerticalCoordinate = new ArrayList<String>();
+			if(columnAndFunctionArray[0].equals(ExportFormSqlBuilder.gas_number_column)) gasNumberVerticalCoordinate = new ArrayList<String>(); 
+			if(columnAndFunctionArray[0].equals(ExportFormSqlBuilder.production_number_column))  productionNumberVerticalCoordinate = new ArrayList<String>();
+			if(columnAndFunctionArray[0].equals(ExportFormSqlBuilder.sale_number_column)) saleNumberVerticalCoordinate = new ArrayList<String>();
+			if(columnAndFunctionArray[0].equals(ExportFormSqlBuilder.temperature_column)) temperatureNumberVerticalCoordinate = new ArrayList<String>();
+			if(columnAndFunctionArray[0].equals(ExportFormSqlBuilder.warn_number_column)) warnNumberVerticalCoordinate = new ArrayList<String>();
+			if(columnAndFunctionArray[0].equals(ExportFormSqlBuilder.warn_number_column)) waterNumberVerticalCoordinate = new ArrayList<String>();
+		}
+
 		for(ExportForm exportForm:list){
 			if(exportFormRequest.getGroupby().equals(ExportFormSqlBuilder.YEAR))horizontalCoordinate.add(exportForm.getYear());
 			if(exportFormRequest.getGroupby().equals(ExportFormSqlBuilder.MONTH))horizontalCoordinate.add(exportForm.getMonth());

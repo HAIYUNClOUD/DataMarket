@@ -9,13 +9,8 @@ import java.util.Date;
  *
  */
 public class ExportFormRequest {
-	public enum function{
-		AVG,SUM,MAX,MIN 
-	}
-	public enum groupby{
-		YEAR,MONTH,DAY
-	}
-	private String function;// AVG,SUM,MAX,MIN 
+
+	private String function[];// AVG,SUM,MAX,MIN 
 	private String groupby;//YEAR,MONTH,DAY 横坐标
 	private String geogId;//地理位置ID
 	private String workShopId;//厂房ID
@@ -33,10 +28,10 @@ public class ExportFormRequest {
 	private String lines[];
 	private Date startDate;
 	private Date endDate;
-	public String getFunction() {
+	public String[] getFunction() {
 		return function;
 	}
-	public void setFunction(String function) {
+	public void setFunction(String[] function) {
 		this.function = function;
 	}
 	public String getGroupby() {
