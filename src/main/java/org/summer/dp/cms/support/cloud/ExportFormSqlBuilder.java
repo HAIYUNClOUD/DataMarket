@@ -63,7 +63,7 @@ public class ExportFormSqlBuilder {
 			if(columnAndFunctionArray[0].equals(temperature_column)) column = temperature_column;
 			if(columnAndFunctionArray[0].equals(warn_number_column)) column = warn_number_column;
 			if(columnAndFunctionArray[0].equals(warn_number_column)) column = water_number_column;
-			selectsql.append(columnAndFunctionArray[1]).append(left).append(tdoc).append(electric_column).append(right).append(AS).append(column).append(DOUHAO);
+			selectsql.append(columnAndFunctionArray[1]).append(left).append(tdoc).append(electric_column).append(right).append(AS).append(column+columnAndFunctionArray[1]).append(DOUHAO);
 		}
 		
 		
