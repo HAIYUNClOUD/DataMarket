@@ -1,7 +1,5 @@
 package org.summer.dp.cms.interceptor;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -14,6 +12,7 @@ public class ServletInterceptor extends HandlerInterceptorAdapter {
     	/**
     	 * 暂时允许跨域访问
     	 */
+    	response.setHeader("Access-Control-Allow-Origin", "*");
         response.setHeader("Access-Control-Allow-Headers", "Content-Type");  
         response.setHeader("Access-Control-Allow-Methods", "GET");  
         response.setHeader("Allow", "GET");  

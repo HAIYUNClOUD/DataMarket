@@ -1,8 +1,23 @@
-请求:
-https://www.zhaobaodong.space/exportForm?function=SUM&groupby=YEAR&startDate=2015-12-30%2000:00:00&endDate=2016-04-01%2023:59:59</br>
+获取国家列表:</br>
+https://www.zhaobaodong.space/dimGeog/find?type=1&page=1&count=50</br>
+获取省份列表:</br>
+https://www.zhaobaodong.space/dimGeog/find?type=2&page=1&count=50&parentId=1</br>
+获取城市列表:</br>
+https://www.zhaobaodong.space/dimGeog/find?type=3&page=1&count=50&parentId=2</br>
+获取类型列表:</br>
+https://www.zhaobaodong.space/dimGeog/find?page=1&count=50</br>
+获取厂房列表:</br>
+https://www.zhaobaodong.space/dimWorkShop/find?page=1&count=50</br>
+
+</br>
+报表请求:
+https://www.zhaobaodong.space/exportForm?function=MAX&groupby=YEAR&startDate=2015-12-30 00:00:00&endDate=2016-04-01 23:59:59&&lines=electric_number&lines=gas_number&geogId=3&workShopId=2&typeId=1</br>
 function SUM (求和) AVG(平均) MAX(最大) MIN(最小)</br>
 groupby 横坐标YEAR,MONTH,DAY,HOUR,DIMGEOG,DIMTYPE,DIMWORKSHOP   年,月,日,小时,地方,类型,工厂</br>
 startDate endDate 开始结束日期</br>
+geogId 地理位置ID</br>
+workShopId 厂房ID</br>
+typeId 类型ID</br>
 lines[]; 返回的线,如果不匹配值,我的程序将会报错,值electric_number(电量),gas_number(气量),production_number(产量),sale_number(销售量),temperature(温度),warn_number(热量),water_number(水量)</br>
 </br></br>
 
