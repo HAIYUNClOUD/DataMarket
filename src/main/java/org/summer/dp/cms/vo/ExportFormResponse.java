@@ -61,8 +61,9 @@ public class ExportFormResponse implements Serializable{
         }//那么我们的纵坐标集合创建完毕了；
 		for(int i=0;i<list.size();i++){
 			ExportForm exportForm =  list.get(i);
+			int a = 0;
 			for(List<String> listString : yLists){
-				int a = 0;
+			
 				listString.add(exportForm.getColumns().get(a++));
 			}
 			if(exportFormRequest.getGroupby().equals(ExportFormSqlBuilder.YEAR))x.add(exportForm.getYear());
