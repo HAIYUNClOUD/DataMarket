@@ -58,12 +58,12 @@ public class ExportFormSqlBuilder {
 			String column = "";
 			if(columnAndFunctionArray[0].equals(electric_column)) column = electric_column;
 			if(columnAndFunctionArray[0].equals(gas_number_column)) column = gas_number_column;
-			if(columnAndFunctionArray[0].equals(production_number_column)) column = electric_column;
+			if(columnAndFunctionArray[0].equals(production_number_column)) column = production_number_column;
 			if(columnAndFunctionArray[0].equals(sale_number_column)) column = sale_number_column;
 			if(columnAndFunctionArray[0].equals(temperature_column)) column = temperature_column;
 			if(columnAndFunctionArray[0].equals(warn_number_column)) column = warn_number_column;
-			if(columnAndFunctionArray[0].equals(warn_number_column)) column = water_number_column;
-			selectsql.append(columnAndFunctionArray[1]).append(left).append(tdoc).append(electric_column).append(right).append(AS).append(column+columnAndFunctionArray[1]).append(DOUHAO);
+			if(columnAndFunctionArray[0].equals(water_number_column)) column = water_number_column;
+			selectsql.append(columnAndFunctionArray[1]).append(left).append(tdoc).append(column).append(right).append(AS).append(column+columnAndFunctionArray[1]).append(DOUHAO);
 		}
 		
 		

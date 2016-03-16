@@ -44,7 +44,6 @@ public class DataNumberController extends BaseController {
 			}else{
 				List<ExportForm> exportFormList = this.dataNumberService.exportForm(exportFormRequest);
 				exportFormResponse.toResponse(exportFormList, exportFormRequest);
-				System.out.println(exportFormResponse.toString());
 				response.setData(exportFormResponse.toString());
 			}
 		}catch (Exception e){

@@ -52,10 +52,19 @@ public class ExportFormResponse implements Serializable{
 	public void toResponse(List<ExportForm> list,ExportFormRequest exportFormRequest){
 		
 		x = new ArrayList<String>();
-	    y = new ArrayList<List<String>>();
-
-		for(ExportForm exportForm:list){
-			y.add(exportForm.getColumns());
+	    
+        int xsize = exportFormRequest.getLines().length;//确认有多少个横坐标,然后创建对应的纵坐标集合
+        List<List<String>> yLists = new ArrayList<List<String>>();//动态纵坐标集合
+        for(int u = 0 ; u<xsize ; u++){
+        	List<String> yList = new ArrayList<String>();
+        	yLists.add(yList);
+        }//那么我们的纵坐标集合创建完毕了；
+		for(int i=0;i<list.size();i++){
+			ExportForm exportForm =  list.get(i);
+			for(List<String> listString : yLists){
+				int a = 0;
+				listString.add(exportForm.getColumns().get(a++));
+			}
 			if(exportFormRequest.getGroupby().equals(ExportFormSqlBuilder.YEAR))x.add(exportForm.getYear());
 			if(exportFormRequest.getGroupby().equals(ExportFormSqlBuilder.MONTH))x.add(exportForm.getMonth());
 			if(exportFormRequest.getGroupby().equals(ExportFormSqlBuilder.HOUR))x.add(exportForm.getHour());
@@ -68,5 +77,6 @@ public class ExportFormResponse implements Serializable{
 //			if(warnNumberVerticalCoordinate!=null)warnNumberVerticalCoordinate.add(exportForm.getWarnNumber());
 //			if(waterNumberVerticalCoordinate!=null)waterNumberVerticalCoordinate.add(exportForm.getWarnNumber());
 		}
+        y = yLists;
 	}
 }
