@@ -11,7 +11,7 @@ https://www.zhaobaodong.space/dimWorkShop/find?page=1&count=50</br>
 
 </br>
 报表请求:</br>
-https://www.zhaobaodong.space/exportForm?exportForm?groupby=YEAR&startDate=20151230000000&endDate=20160401235959&&lines=electric_number-MAX&geogId=3&workShopId=2&typeId=1</br>
+https://www.zhaobaodong.space/exportForm?exportForm?groupby=YEAR&startDate=2015-12-30 00:00:00&endDate=2016-04-01 23:59:59&lines=phase_a_power-max&lines=phase_b_power-sum&typeId=1</br>
 
 groupby 横坐标YEAR,MONTH,DAY,HOUR年,月,日,小时</br>
 startDate endDate 开始结束日期</br>
@@ -19,7 +19,7 @@ geogId 地理位置ID,只需要传type=3的城市</br>
 workShopId 厂房ID</br>
 typeId 类型ID</br>
 function  SUM (求和) AVG(平均) MAX(最大) MIN(最小),现在跟在每个line后面,必须使用-分割</br>
-lines[]; 返回的线,如果不匹配值,我的程序将会报错,值electric_number-{function}(电量),gas_number-{function}(气量),production_number-{function}(产量),sale_number-{function}(销售量),temperature-{function}(温度),warn_number-{function}(热量),water_number-{function}(水量)</br>
+lines[]; 返回的线,如果不匹配值,我的程序将会报错,参考度量表,field_name-{function}</br>
 </br></br>
 
 返回:</br>
