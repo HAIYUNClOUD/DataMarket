@@ -16,19 +16,12 @@ import org.summer.dp.cms.vo.ExportFormRequest;
 public class ExportFormSqlBuilder {
 	private static final String left = "(";
 	private static final String right = ")";
-	public static final String electric_column = "electric_number";
-	public static final String gas_number_column = "gas_number";
-	public static final String production_number_column = "production_number";
-	public static final String sale_number_column = "sale_number";
-	public static final String temperature_column = "temperature";
-	public static final String warn_number_column = "warn_number";
-	public static final String water_number_column = "water_number";
 	private static final String tdoc = "t.";
 	private static final String AS = " as ";
-	private static final String dimdatetime_table = "dim_datatime dt";
-	private static final String dimgeog_table = "dim_geog dg";
-	private static final String dimworkshop_table = "dim_workshop dw";
-	private static final String dimtype_table = "dim_type dtype";
+//	private static final String dimdatetime_table = "dim_datatime dt";
+//	private static final String dimgeog_table = "dim_geog dg";
+//	private static final String dimworkshop_table = "dim_workshop dw";
+//	private static final String dimtype_table = "dim_type dtype";
 	public static final String YEAR = "YEAR";
 	public static final String MONTH = "MONTH";
 	public static final String DAY = "DAY";
@@ -37,10 +30,10 @@ public class ExportFormSqlBuilder {
 	public static final String DIMTYPE = "DIMTYPE";
 	public static final String DIMWORKSHOP = "DIMWORKSHOP";
 
-	private static final String AVG = "AVG";
-	private static final String SUM = "SUM";
-	private static final String MAX = "MAX";
-	private static final String MIN = "MIN";
+//	private static final String AVG = "AVG";
+//	private static final String SUM = "SUM";
+//	private static final String MAX = "MAX";
+//	private static final String MIN = "MIN";
 	private static final String DOUHAO = ",";
 	private static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	public static String genSql(ExportFormRequest exportFormRequest){
@@ -55,14 +48,7 @@ public class ExportFormSqlBuilder {
 		//build select 
 		for(String columnAndFunction:exportFormRequest.getLines()){
 			String[] columnAndFunctionArray = columnAndFunction.split("-");
-			String column = "";
-			if(columnAndFunctionArray[0].equals(electric_column)) column = electric_column;
-			if(columnAndFunctionArray[0].equals(gas_number_column)) column = gas_number_column;
-			if(columnAndFunctionArray[0].equals(production_number_column)) column = production_number_column;
-			if(columnAndFunctionArray[0].equals(sale_number_column)) column = sale_number_column;
-			if(columnAndFunctionArray[0].equals(temperature_column)) column = temperature_column;
-			if(columnAndFunctionArray[0].equals(warn_number_column)) column = warn_number_column;
-			if(columnAndFunctionArray[0].equals(water_number_column)) column = water_number_column;
+			String column = columnAndFunctionArray[0];
 			selectsql.append(columnAndFunctionArray[1]).append(left).append(tdoc).append(column).append(right).append(AS).append(column+columnAndFunctionArray[1]).append(DOUHAO);
 		}
 		

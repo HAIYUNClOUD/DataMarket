@@ -48,7 +48,7 @@ public class DataNumberController extends BaseController {
 				response.setData(exportFormResponse.toString());
 			}
 		}catch (Exception e){
-			exportFormResponse.setMsg("function value equal MAX MIN AVG SUM ; start end date must yyyyMMdd hhmmss ;if right!call 18520786445.");
+			exportFormResponse.setMsg("GROUP BY must not be null; start end date must yyyyMMdd hhmmss ;if right!call 18520786445.");
 			e.printStackTrace();
 		}
 		return exportFormResponse;
